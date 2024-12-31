@@ -1,6 +1,8 @@
 #include "includes.h"
 extern LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
+#include "crosshair.hpp"
+
 Present oPresent;
 HWND window = NULL;
 WNDPROC oWndProc;
@@ -53,8 +55,8 @@ HRESULT __stdcall hkPresent(IDXGISwapChain* pSwapChain, UINT SyncInterval, UINT 
 	ImGui_ImplWin32_NewFrame();
 	ImGui::NewFrame();
 
-	ImGui::Begin("ImGui Window");
-	ImGui::End();
+	const ImVec2& screenSize{ ImGui::GetIO().DisplaySize };
+	void RenderCrosshair(screenSize);
 
 	ImGui::Render();
 
